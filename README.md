@@ -1,3 +1,12 @@
+Generar clave secreta
+He incluido un comando auxiliar para generar una clave para usted:
+
+php artisan jwt:secret
+Esto actualizará su .envarchivo con algo comoJWT_SECRET=foobar
+
+Es la clave que se utilizará para firmar sus tokens.
+
+
 url :http://127.0.0.1:8000/api/auth/login 
 parametros: clave,usuario
 POST
