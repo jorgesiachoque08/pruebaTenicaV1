@@ -32,10 +32,11 @@ class UserController extends Controller
 
     public function registrar(Request $request)
     {
-        $pmtos = $request->only('usuario','clave');
+        $pmtos = $request->only('usuario','clave', 'nombres');
         $validador = Validator::make($request->all(),[
             'usuario' => ['required', 'string', 'max:255', 'unique:users'],
             'clave' => ['required', 'string', 'min:8'],
+            'nombres' => ['required', 'string', 'max:255'],
         ]);
 
         if ($validador->fails()) {
@@ -47,7 +48,8 @@ class UserController extends Controller
         }else{
             $usuarioRegistrado = User::create([
                 'usuario' => $pmtos['usuario'],
-                'clave' => bcrypt($pmtos['clave'])
+                'clave' => bcrypt($pmtos['clave']),
+                'razon_social' => $pmtos['nombres']
             ]);
             
             $status = 200;
@@ -94,6 +96,7 @@ class UserController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60,
+            'roles'=>$this->usuariosRoles->listarRolesUser(),
             'data'=>auth()->user()
             
         ]);
