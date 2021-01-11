@@ -25,4 +25,15 @@ class UsuariosRoles extends Model
             ['cod_rol' => $idRol, 'cod_usuario' => Auth()->id()]
         );
     }
+
+    public function listarRolesUser()
+    {
+        return DB::table('usuarios_roles as ur')
+        ->join('roles as r', 'ur.cod_rol', '=', 'r.cod')
+        ->select(DB::raw('r.*'))
+        ->where('ur.cod_usuario', Auth()->id())
+        ->get();
+    }
+
+    
 }

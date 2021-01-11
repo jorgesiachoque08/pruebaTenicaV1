@@ -19,4 +19,5 @@ class Roles extends Model
             ->exists();
     }
 
+
 }
