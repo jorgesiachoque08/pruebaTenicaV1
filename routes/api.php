@@ -35,6 +35,8 @@ Route::middleware('jwt.verify','solicitante')->group(function () {
     Route::post('/solicitante/subscribirse', ['as' => 'solicitante.subscribirse', 'uses' => 'perfil\SolicitanteController@subscribirse']);
     Route::post('/solicitante/apartarCupo', ['as' => 'solicitante.apartarCupo', 'uses' => 'perfil\SolicitanteController@apartarCupo']);
     Route::get('/solicitante/listarCuposCita/{codCita}', ['as' => 'solicitante.listarCuposCita', 'uses' => 'perfil\solicitanteController@listarCuposCita']);
+    Route::get('/solicitante/listarPrestadores', ['as' => 'solicitante.listarPrestadores', 'uses' => 'perfil\solicitanteController@listarPrestadores']);
+    Route::get('/solicitante/listarCitas', ['as' => 'solicitante.listarCitas', 'uses' => 'perfil\solicitanteController@listarCitas']);
 
 });
 

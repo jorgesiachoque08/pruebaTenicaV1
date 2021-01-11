@@ -24,4 +24,12 @@ class Prestadores extends Model
         ->where('cod_usuario', $idUserPrest)
         ->exists();
     }
+
+    public function listarPrestadores()
+    {
+        return DB::table('prestadores as p')
+        ->join('users as u', 'p.cod_usuario', '=', 'u.cod')
+        ->select(DB::raw('u.cod,u.razon_social,u.usuario'))
+        ->get();
+    }
 }

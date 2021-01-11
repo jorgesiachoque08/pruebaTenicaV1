@@ -41,5 +41,16 @@ class Citas extends Model
         return DB::table('citas')->where('cod', $codCita)->decrement('cupos_disponibles', 1);
     }
 
+    public function listarCitas()
+    {
+        return DB::table("citas as c")
+        ->join('prestadores as p', 'c.cod_usuario_prestador', '=', 'p.cod_usuario')
+        ->join('solicitantes_prestadores as sp', 'p.cod_usuario', '=', 'sp.cod_usuario_prestador')
+        ->join('users as u', 'p.cod_usuario', '=', 'u.cod')
+        ->select(DB::raw('c.*,u.razon_social'))
+        ->where('sp.cod_usuario_solicitante', Auth()->id())
+        ->get();
+    }
+
 
 }

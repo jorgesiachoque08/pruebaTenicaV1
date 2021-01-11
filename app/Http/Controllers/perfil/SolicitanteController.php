@@ -140,4 +140,42 @@ class SolicitanteController extends Controller
         return response(compact('status','message','data'));
         
     }
+
+    public function listarPrestadores(Request $request)
+    {
+        
+            $prestadores = $this->prestadores->listarPrestadores();
+            if(count($prestadores) > 0){
+                $data = $prestadores;
+                $status = 200;
+                $message = "ok";
+                
+                
+            }else{
+                $data = [];
+                $status = 200;
+                $message = "no se encotraron resultados";
+            }
+        
+        return response(compact('status','message','data'));
+        
+    }
+
+    public function listarCitas(Request $request)
+    {
+        
+            $citas = $this->citas->listarCitas();
+            if(count($citas) > 0){
+                $data = $citas;
+                $status = 200;
+                $message = "ok";
+            }else{
+                $data = [];
+                $status = 200;
+                $message = "no se encotraron resultados";
+            }
+        
+        return response(compact('status','message','data'));
+        
+    }
 }
