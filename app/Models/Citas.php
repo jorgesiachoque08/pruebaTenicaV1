@@ -52,5 +52,15 @@ class Citas extends Model
         ->get();
     }
 
+    public function listarCitasPrestador()
+    {
+        return DB::table("citas as c")
+        ->join('prestadores as p', 'c.cod_usuario_prestador', '=', 'p.cod_usuario')
+        ->join('users as u', 'p.cod_usuario', '=', 'u.cod')
+        ->select(DB::raw('c.*,u.razon_social'))
+        ->where('c.cod_usuario_prestador', Auth()->id())
+        ->get();
+    }
+
 
 }
