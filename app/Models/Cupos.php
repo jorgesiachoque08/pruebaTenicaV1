@@ -30,7 +30,7 @@ class Cupos extends Model
             return DB::table("cupos as c")
             ->join('users as u', 'c.cod_usuario_solicitante', '=', 'u.cod')
             ->rightJoin('citas as ci', 'ci.cod', '=', 'c.cod_cita')
-            ->select(DB::raw('c.*,u.cod as idSolicitante,u.usuario as Solicitante'))
+            ->select(DB::raw('c.*,u.cod as idSolicitante,u.usuario as Solicitante,u.razon_social as nombre'))
             ->where('ci.cod', $codCita)
             ->where('ci.cod_usuario_prestador', Auth()->id())
             ->get();
@@ -40,7 +40,7 @@ class Cupos extends Model
             ->rightJoin('citas as ci', 'ci.cod', '=', 'c.cod_cita')
             ->join('prestadores as p', 'p.cod_usuario', '=', 'ci.cod_usuario_prestador')
             ->join('solicitantes_prestadores as sp', 'sp.cod_usuario_prestador', '=', 'p.cod_usuario')
-            ->select(DB::raw('c.*,u.cod as idSolicitante,u.usuario as Solicitante'))
+            ->select(DB::raw('c.*,u.cod as idSolicitante,u.usuario as Solicitante,u.razon_social as nombre'))
             ->where('ci.cod', $codCita)
             ->where('sp.cod_usuario_solicitante', Auth()->id())
             ->get();
