@@ -50,7 +50,7 @@ Route::middleware('jwt.verify','prestador')->group(function () {
 
     Route::post('/prestador/crearCita', ['as' => 'prestador.crearCita', 'uses' => 'perfil\PrestadorController@crearCita']);
     Route::get('/prestador/listarCuposCita/{codCita}', ['as' => 'prestador.listarCuposCita', 'uses' => 'perfil\PrestadorController@listarCuposCita']);
-
+    Route::get('/prestador/listarCitas', ['as' => 'prestador.listarCitas', 'uses' => 'perfil\PrestadorController@listarCitas']);
 });
 
 

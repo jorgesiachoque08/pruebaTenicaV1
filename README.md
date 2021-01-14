@@ -54,3 +54,7 @@ Requiere login y ser rol solicitante
 url :http://127.0.0.1:8000/api/solicitante/listarCitas
 GET
 Requiere login y ser rol solicitante
+
+url :http://127.0.0.1:8000/api/prestador/listarCitas
+GET
+Requiere login y ser rol prestador

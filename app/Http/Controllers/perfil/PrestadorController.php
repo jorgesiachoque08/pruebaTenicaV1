@@ -81,5 +81,21 @@ class PrestadorController extends Controller
         
     }
 
-   
+    public function listarCitas(Request $request)
+    {
+        
+            $citas = $this->citas->listarCitasPrestador();
+            if(count($citas) > 0){
+                $data = $citas;
+                $status = 200;
+                $message = "ok";
+            }else{
+                $data = [];
+                $status = 200;
+                $message = "no se encotraron resultados";
+            }
+        
+        return response(compact('status','message','data'));
+        
+    }
 }
